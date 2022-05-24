@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import UserCard from "../../components/UserCard";
 const SEARCH_URL = "https://api.github.com/search/users";
 
-const SearchPage = (props) => {
-  const { query } = props;
+const SearchPage = () => {
   const [users, setUser] = useState([]);
+  const [params] = useSearchParams();
   useEffect(
     () => {
-      fetch(SEARCH_URL + `?q=${query}+in:login`)
+      fetch(SEARCH_URL + `?q=${params.get("q")}+in:login`)
         .then(response => response.json())
-        .then(data => { setUser(data.items) })
-    }, [query]
-  );
+        .then(data => setUser(data.items))
+    },
+    [params]);
 
   return (
     <div className="container">
