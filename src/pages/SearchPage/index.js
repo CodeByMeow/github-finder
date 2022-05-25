@@ -4,7 +4,7 @@ import UserCard from "../../components/UserCard";
 const SEARCH_URL = "https://api.github.com/search/users";
 
 const SearchPage = () => {
-  const [users, setUser] = useState([]);
+  const [users, setUser] = useState(null);
   const [params] = useSearchParams();
 
   useEffect(() => {
@@ -16,20 +16,29 @@ const SearchPage = () => {
     getGithubSearchResult();
   }, [params]);
 
-  //WARN: Return not found in mouting :(
-  if (users.length === 0) {
+  if (!users) {
     return (
       <div className="container">
-        <div>No result found.</div>
+        <div>Loadding...</div>
       </div>
     );
   }
 
-  return (
-    <div className="container">
-      {users.map((user, index) => <UserCard key={index} user={user} />)}
-    </div>
-  )
+  if (Array.isArray(users)) {
+    if (users.length === 0) {
+      return (
+        <div className="container">
+          <div>Not found</div>
+        </div>
+      );
+    }
+
+    return (
+      <div className="container">
+        {users.map((user, index) => <UserCard key={index} user={user} />)}
+      </div>
+    )
+  }
 }
 
 export default SearchPage;
