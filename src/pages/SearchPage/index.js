@@ -6,13 +6,15 @@ const SEARCH_URL = "https://api.github.com/search/users";
 const SearchPage = () => {
   const [users, setUser] = useState([]);
   const [params] = useSearchParams();
-  useEffect(
-    () => {
-      fetch(SEARCH_URL + `?q=${params.get("q")}+in:login`)
-        .then(response => response.json())
-        .then(data => setUser(data.items))
-    },
-    [params]);
+
+  useEffect(() => {
+    const getGithubSearchResult = async () => {
+      const response = await fetch(SEARCH_URL + `?q=${params.get("q")}+in:login`)
+      const { items } = await response.json();
+      setUser(items);
+    }
+    getGithubSearchResult();
+  }, [params]);
 
   //WARN: Return not found in mouting :(
   if (users.length === 0) {
