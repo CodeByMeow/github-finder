@@ -14,6 +14,15 @@ const SearchPage = () => {
     },
     [params]);
 
+  //WARN: Return not found in mouting :(
+  if (users.length === 0) {
+    return (
+      <div className="container">
+        <div>No result found.</div>
+      </div>
+    );
+  }
+
   return (
     <div className="container">
       {users.map((user, index) => <UserCard key={index} user={user} />)}

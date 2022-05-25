@@ -1,5 +1,11 @@
+import { useNavigate } from "react-router-dom";
+
 function UserCard(props) {
-  const { user: {login, avatar_url} } = props;
+  const { user: { login, avatar_url } } = props;
+  const navigate = useNavigate();
+
+  const onClickHandler = () => navigate(`/user/${login}`);
+
   return (
     <div className="user-card">
       <div className="user-content">
@@ -8,7 +14,7 @@ function UserCard(props) {
         </div>
         <div className="user-info">
           <h2>{login}</h2>
-          <button>View</button>
+          <button onClick={onClickHandler}>View</button>
         </div>
       </div>
     </div>

@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { BrowserRouter, Routes, Route, Link, createSearchParams, useNavigate } from 'react-router-dom';
+import { Routes, Route, Link, createSearchParams, useNavigate } from 'react-router-dom';
 import HomePage from "../../pages/HomePage";
 import AboutPage from "../../pages/AboutPage";
 import SearchPage from "../../pages/SearchPage";
+import UserDetail from "../../pages/UserDetail";
+import NotFoundPage from "../../pages/NotFoundPage";
 
 const Header = () => {
   const [input, setInput] = useState("");
@@ -33,8 +35,12 @@ const Header = () => {
           </div>
           <nav className="nav">
             <ul className="flex justify-between align-center">
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/about">About</Link></li>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/about">About</Link>
+              </li>
             </ul>
           </nav>
         </header>
@@ -44,6 +50,8 @@ const Header = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/user/:username" element={<UserDetail />} />
+        <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </>
   )

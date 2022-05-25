@@ -1,7 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body{
+  font-family: 'Roboto', sans-serif;
 }
 
 .full-container {
@@ -10,6 +15,10 @@
 
 .flex {
   display: flex;
+}
+
+.f-col {
+  flex-direction: column;
 }
 
 .justify-between {
@@ -82,6 +91,7 @@
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 .user-info {
@@ -136,4 +146,35 @@
 
 .search-bar button[type="submit"]:hover {
   opacity: 1;
+}
+
+.user-detail {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.l-img {
+  width: 300px;
+  height: auto;
+}
+
+.user-info {
+  margin: 20px;
+}
+
+.user-bio {
+  display: block;
+  margin: 10px
+}
+
+.user-location {
+  font-size: 1em;
+  color: #444444;
+}
+
+.page-not-found {
+  font-size: 3em;
+  text-align: center;
+  color: #444444;
 }
